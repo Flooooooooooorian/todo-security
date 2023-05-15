@@ -22,7 +22,7 @@ class TodoController {
         return todoService.getAll();
     }
 
-     @PostMapping
+    @PostMapping
     Todo postTodo(@RequestBody Todo todo) {
         return todoService.save(todo);
     }
