@@ -1,4 +1,4 @@
-package de.neuefische.todo.backend.todo;
+package de.neuefische.backend.todo;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

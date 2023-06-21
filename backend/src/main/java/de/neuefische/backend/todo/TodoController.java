@@ -1,4 +1,4 @@
-package de.neuefische.todo.backend.todo;
+package de.neuefische.backend.todo;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
