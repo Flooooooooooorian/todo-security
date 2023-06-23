@@ -23,7 +23,7 @@ h1 {
     gap: 5px;
 }
 
-.todo-card.new-todo input {
+.todo-card input {
     width: 100%;
     border-width: 0 0 1px 0;
     padding: 0;
