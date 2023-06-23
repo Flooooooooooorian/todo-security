@@ -17,7 +17,21 @@ h1 {
     border: solid 1px black;
     border-radius: 5px;
     height: 50px;
-    width: 100px;
     margin-bottom: 20px;
     padding: 10px;
+}
+
+.todo-card.new-todo {
+    display: grid;
+    gap: 5px;
+}
+
+.todo-card.new-todo input {
+    width: 100%;
+    border-width: 0 0 1px 0;
+    padding: 0;
+}
+
+.todo-card.new-todo button {
+    justify-self: end;
 }
