@@ -1,7 +1,8 @@
 import {Todo} from "./Todo.ts";
-import TodoCard from "./TodoCard.tsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import TodoColumn from "./TodoColumn.tsx";
+import {allPossibleTodos} from "./TodoStatus.ts";
 
 function App() {
 
@@ -22,10 +23,15 @@ function App() {
 
     return (
         <>
-            <h1>TODOs</h1>
-            {
-                todos.map(todo => <TodoCard todo={todo} key={todo.id}/>)
-            }
+            <div className="page">
+                <h1>TODOs</h1>
+                {
+                    allPossibleTodos.map(status => {
+                        const filteredTodos = todos.filter(todo => todo.status === status)
+                        return <TodoColumn status={status} todos={filteredTodos}/>
+                    })
+                }
+            </div>
         </>
     )
 }

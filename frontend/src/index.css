@@ -2,6 +2,17 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.page {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+h1 {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
 .todo-card {
     border: solid 1px black;
     border-radius: 5px;
