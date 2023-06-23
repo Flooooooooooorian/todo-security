@@ -21,15 +21,21 @@ h1 {
     margin-bottom: 20px;
     padding: 10px;
     gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.todo-card.new-todo {
+    grid-template-columns: inherit;
 }
 
 .todo-card input {
     width: 100%;
+    grid-column: 1 / -1;
     border-width: 0 0 1px 0;
     padding: 0;
 }
 
 .todo-card button {
-    justify-self: end;
+    justify-self: center;
     min-width: 50px;
 }
