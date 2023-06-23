@@ -3,7 +3,7 @@ import axios from "axios";
 import {Todo} from "./Todo.ts";
 
 type Props = {
-    onNewTodoItemSaved: () => void,
+    onTodoItemChange: () => void,
 }
 
 export default function NewTodoCard(props: Props) {
@@ -21,7 +21,7 @@ export default function NewTodoCard(props: Props) {
                 description: text,
                 status: "OPEN",
             } as Todo)
-            .then(props.onNewTodoItemSaved)
+            .then(props.onTodoItemChange)
     }
 
     return (

@@ -14,15 +14,12 @@ h1 {
 }
 
 .todo-card {
+    display: grid;
     border: solid 1px black;
     border-radius: 5px;
     height: 50px;
     margin-bottom: 20px;
     padding: 10px;
-}
-
-.todo-card.new-todo {
-    display: grid;
     gap: 5px;
 }
 
@@ -32,6 +29,7 @@ h1 {
     padding: 0;
 }
 
-.todo-card.new-todo button {
+.todo-card button {
     justify-self: end;
+    min-width: 50px;
 }
