@@ -1,0 +1,12 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.todo-card {
+    border: solid 1px black;
+    border-radius: 5px;
+    height: 50px;
+    width: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
