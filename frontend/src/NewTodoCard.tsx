@@ -1,33 +1,28 @@
-import {useState} from "react";
-import axios from "axios";
-import {Todo} from "./Todo.ts";
+import {ChangeEvent, FormEvent, useState} from "react";
 
 type Props = {
-    onTodoItemChange: () => void,
+    onTodoItemAdd: (text: string) => void,
 }
 
 export default function NewTodoCard(props: Props) {
 
     const [text, setText] = useState("");
 
-    function changeText(event: React.ChangeEvent<HTMLInputElement>) {
+    function changeText(event: ChangeEvent<HTMLInputElement>) {
         setText(event.target.value)
     }
 
-    function saveTodo() {
+    function saveTodo(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+
         setText("")
-        axios.post("/api/todo",
-            {
-                description: text,
-                status: "OPEN",
-            } as Todo)
-            .then(props.onTodoItemChange)
+        props.onTodoItemAdd(text)
     }
 
     return (
-        <div className="todo-card new-todo">
+        <form onSubmit={saveTodo} className="todo-card new-todo">
             <input type="text" value={text} onInput={changeText}/>
-            <button onClick={saveTodo}>Save</button>
-        </div>
+            <button type="submit">Save</button>
+        </form>
     );
 }

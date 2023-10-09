@@ -15,6 +15,33 @@ function App() {
             })
     }
 
+    function addTodo(text: string) {
+        axios.post("/api/todo",
+            {
+                description: text,
+                status: "OPEN",
+            } as Todo)
+            .then((response => {
+                if (todos) {
+                    setTodos([...todos, response.data])
+                }
+            }))
+    }
+
+    function deleteTodo(id: string) {
+        axios.delete("/api/todo/" + id)
+            .then(() => {
+                setTodos(todos?.filter((todo) => todo.id !== id))
+            })
+    }
+
+    function updateTodo(todo: Todo) {
+        axios.put("/api/todo/" + todo.id, todo)
+            .then(response => {
+                setTodos(todos?.map(currentTodo => currentTodo.id === todo.id ? response.data : todo))
+            })
+    }
+
     useEffect(fetchTodos, [])
 
     if (!todos) {
@@ -31,9 +58,11 @@ function App() {
                         return <TodoColumn
                             status={status}
                             todos={filteredTodos}
-                            onTodoItemChange={fetchTodos}
+                            onTodoItemAdd={addTodo}
+                            onTodoItemDelete={deleteTodo}
+                            onTodoItemUpdate={updateTodo}
                             key={status}
-                        />
+                         />
                     })
                 }
             </div>

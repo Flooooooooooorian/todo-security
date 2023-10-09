@@ -1,5 +1,8 @@
 package de.neuefische.backend.todo;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("todos")
 public record Todo(
         String id,
         String description,

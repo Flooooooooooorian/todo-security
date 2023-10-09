@@ -3,6 +3,7 @@ package de.neuefische.backend.todo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
@@ -15,7 +16,7 @@ class TodoService {
     }
 
     List<Todo> getAll() {
-        return todoRepository.getAll();
+        return todoRepository.findAll();
     }
 
     public Todo save(Todo todo) {
@@ -27,15 +28,15 @@ class TodoService {
     }
 
     public Todo getById(String id) {
-        return todoRepository.getById(id);
+        return todoRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Todo with id: " + id + " not found!"));
     }
 
     public Todo update(Todo todo) {
-        return todoRepository.update(todo);
+        return todoRepository.save(todo);
     }
 
     public void delete(String id) {
-        todoRepository.delete(id);
+        todoRepository.deleteById(id);
     }
 }
 
