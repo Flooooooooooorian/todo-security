@@ -38,7 +38,7 @@ function App() {
     function updateTodo(todo: Todo) {
         axios.put("/api/todo/" + todo.id, todo)
             .then(response => {
-                setTodos(todos?.map(currentTodo => currentTodo.id === todo.id ? response.data : todo))
+                setTodos(todos?.map(currentTodo => currentTodo.id === todo.id ? response.data : currentTodo))
             })
     }
 
