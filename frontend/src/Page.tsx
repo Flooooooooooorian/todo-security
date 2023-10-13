@@ -10,7 +10,6 @@ type TodoGalleryProps = {
 }
 export default function TodoGalleryView(props: TodoGalleryProps) {
 
-    console.log(props.todos)
 
     return allPossibleTodos.map(status => {
         const filteredTodos = props.todos.filter(todo => todo.status === status)
