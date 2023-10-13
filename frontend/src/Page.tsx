@@ -8,7 +8,7 @@ type TodoGalleryProps = {
     onTodoItemDelete: (id: string) => void
     onTodoItemUpdate: (todo: Todo) => void
 }
-export default function Page(props: TodoGalleryProps) {
+export default function TodoGalleryView(props: TodoGalleryProps) {
 
     console.log(props.todos)
 
