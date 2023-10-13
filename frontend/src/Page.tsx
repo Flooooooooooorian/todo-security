@@ -10,6 +10,7 @@ type TodoGalleryProps = {
 }
 export default function Page(props: TodoGalleryProps) {
 
+    const todos = props.todos
     console.log(props.todos)
 
     return allPossibleTodos.map(status => {

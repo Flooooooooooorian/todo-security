@@ -43,7 +43,45 @@ class TodoController {
     void delete(@PathVariable String id) {
         todoService.delete(id);
     }
- }
+
+    @PostMapping("abc")
+    String test() {
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+        var a = "a";
+        var b = "456";
+        var c = "789";
+        var d = "1304";
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("for");
+        }
+
+        if (11 % 2 == 0) {
+            System.out.println(a);
+        }
+        else {
+            System.out.println("f");
+        }
+
+        switch (a) {
+            case "a":
+                return a;
+            case "b":
+                return b;
+            case "c":
+                return c;
+            case "d":
+                return d;
+            default:
+                throw new IllegalStateException("Unexpected value: " + a);
+        }
+    }
+}
 
 
 
