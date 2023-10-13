@@ -43,6 +43,16 @@ class TodoController {
     void delete(@PathVariable String id) {
         todoService.delete(id);
     }
+
+    @PostMapping("abc")
+    void test() {
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+        System.out.println("test");
+    }
  }
 
 
