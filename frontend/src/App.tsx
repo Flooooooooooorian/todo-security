@@ -8,6 +8,20 @@ function App() {
 
     const [todos, setTodos] = useState<Todo[]>()
 
+
+    function login() {
+        const host = window.location.host === "localhost:5173" ? "http://localhost:8080": window.location.origin
+
+        window.open(host + '/oauth2/authorization/github', '_blank')
+    }
+
+    function me() {
+        axios.get("/api/users/me")
+            .then(response => {
+                console.log(response.data)
+            })
+    }
+
     function fetchTodos() {
         axios.get("/api/todo")
             .then(response => {
@@ -52,6 +66,8 @@ function App() {
         <>
             <div className="page">
                 <h1>TODOs</h1>
+                <button onClick={login}>Login with Github</button>
+                <button onClick={me}>Me</button>
                 {
                     allPossibleTodos.map(status => {
                         const filteredTodos = todos.filter(todo => todo.status === status)
