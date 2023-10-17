@@ -39,3 +39,10 @@ h1 {
     justify-self: center;
     min-width: 50px;
 }
+
+.nav-link {
+    padding: 0 24px;
+    margin: 12px;
+    border-radius: 10px;
+    border: black solid 1px;
+}
