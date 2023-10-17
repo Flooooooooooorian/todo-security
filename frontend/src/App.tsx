@@ -7,18 +7,33 @@ import {allPossibleTodos} from "./TodoStatus.ts";
 function App() {
 
     const [todos, setTodos] = useState<Todo[]>()
+    const [user, setUser] = useState<string>()
+
+    useEffect(() => {
+        me()
+    }, []);
 
 
     function login() {
         const host = window.location.host === "localhost:5173" ? "http://localhost:8080": window.location.origin
 
-        window.open(host + '/oauth2/authorization/github', '_blank')
+        window.open(host + '/oauth2/authorization/github', '_self')
     }
 
     function me() {
         axios.get("/api/users/me")
             .then(response => {
-                console.log(response.data)
+                setUser(response.data)
+            })
+    }
+
+    function logout() {
+        axios.post("/api/logout")
+            .then(() => {
+                setUser(undefined)
+            })
+            .catch(error => {
+                console.error(error)
             })
     }
 
@@ -64,23 +79,29 @@ function App() {
 
     return (
         <>
-            <div className="page">
+            <div>
                 <h1>TODOs</h1>
-                <button onClick={login}>Login with Github</button>
+
+                <p>User: {user}</p>
+                { (user === 'anonymousUser' || user === undefined) && <button onClick={login}>Login with Github</button>}
                 <button onClick={me}>Me</button>
-                {
-                    allPossibleTodos.map(status => {
-                        const filteredTodos = todos.filter(todo => todo.status === status)
-                        return <TodoColumn
-                            status={status}
-                            todos={filteredTodos}
-                            onTodoItemAdd={addTodo}
-                            onTodoItemDelete={deleteTodo}
-                            onTodoItemUpdate={updateTodo}
-                            key={status}
-                         />
-                    })
-                }
+                {user !== 'anonymousUser' && <button onClick={logout}>Logout</button>}
+
+                <div className="page">
+                    {
+                        allPossibleTodos.map(status => {
+                            const filteredTodos = todos.filter(todo => todo.status === status)
+                            return <TodoColumn
+                                status={status}
+                                todos={filteredTodos}
+                                onTodoItemAdd={addTodo}
+                                onTodoItemDelete={deleteTodo}
+                                onTodoItemUpdate={updateTodo}
+                                key={status}
+                            />
+                        })
+                    }
+                </div>
             </div>
         </>
     )
