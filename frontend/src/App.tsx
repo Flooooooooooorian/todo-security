@@ -4,6 +4,7 @@ import axios from "axios";
 import {Link, Route, Routes} from "react-router-dom";
 import Page from "./Page.tsx";
 import TodoColumn from "./TodoColumn.tsx";
+import ProtectedRoutes from "./ProtectedRoutes.tsx";
 
 function App() {
 
@@ -99,24 +100,28 @@ function App() {
                                                 onTodoItemDelete={deleteTodo}
                                                 onTodoItemUpdate={updateTodo}/>}/>
 
-                    <Route path="/open" element={<TodoColumn todos={todos.filter(t => t.status === "OPEN")}
-                                                             status={"OPEN"}
-                                                             onTodoItemAdd={addTodo}
-                                                             onTodoItemDelete={deleteTodo}
-                                                             onTodoItemUpdate={updateTodo}/>}/>
-                    <Route path="/in_progress"
-                           element={<TodoColumn todos={todos.filter(t => t.status === "IN_PROGRESS")}
-                                                status={"IN_PROGRESS"}
-                                                onTodoItemAdd={addTodo}
-                                                onTodoItemDelete={deleteTodo}
-                                                onTodoItemUpdate={updateTodo}/>}/>
 
-                    <Route path="/done" element={<TodoColumn todos={todos.filter(t => t.status === "DONE")}
-                                                             status={"DONE"}
-                                                             onTodoItemAdd={addTodo}
-                                                             onTodoItemDelete={deleteTodo}
-                                                             onTodoItemUpdate={updateTodo}/>}/>
+                    <Route element={<ProtectedRoutes user={user} />}>
 
+                        <Route path="/open" element={<TodoColumn todos={todos.filter(t => t.status === "OPEN")}
+                                                                 status={"OPEN"}
+                                                                 onTodoItemAdd={addTodo}
+                                                                 onTodoItemDelete={deleteTodo}
+                                                                 onTodoItemUpdate={updateTodo}/>}/>
+                        <Route path="/in_progress"
+                               element={<TodoColumn todos={todos.filter(t => t.status === "IN_PROGRESS")}
+                                                    status={"IN_PROGRESS"}
+                                                    onTodoItemAdd={addTodo}
+                                                    onTodoItemDelete={deleteTodo}
+                                                    onTodoItemUpdate={updateTodo}/>}/>
+
+                        <Route path="/done" element={<TodoColumn todos={todos.filter(t => t.status === "DONE")}
+                                                                 status={"DONE"}
+                                                                 onTodoItemAdd={addTodo}
+                                                                 onTodoItemDelete={deleteTodo}
+                                                                 onTodoItemUpdate={updateTodo}/>}/>
+
+                    </Route>
                 </Routes>
             </div>
         </>
