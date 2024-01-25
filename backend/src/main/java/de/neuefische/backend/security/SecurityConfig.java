@@ -27,7 +27,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/todo").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/todo").permitAll()
                         .anyRequest().permitAll())
-
+                .logout(logout -> logout.logoutUrl("/api/users/logout")
+                        .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200)))
 
                 .sessionManagement(sessions ->
                         sessions.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))

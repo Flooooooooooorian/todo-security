@@ -1,7 +1,6 @@
 import TodoCard from "./TodoCard.tsx";
 import {Todo} from "./Todo.ts";
 import {TodoStatus} from "./TodoStatus.ts";
-import NewTodoCard from "./NewTodoCard.tsx";
 
 type Props = {
     status: TodoStatus,
@@ -20,9 +19,6 @@ export default function TodoColumn(props: Props) {
                                                   todo={todo}
                                                   onTodoItemDelete={props.onTodoItemDelete}
                                                   onTodoItemUpdate={props.onTodoItemUpdate}/>)
-            }
-            {
-                (props.status === "OPEN") && <NewTodoCard onTodoItemAdd={props.onTodoItemAdd}/>
             }
         </div>
     );
