@@ -8,6 +8,20 @@ function App() {
 
     const [todos, setTodos] = useState<Todo[]>()
 
+
+    function login() {
+        const host = window.location.host === 'localhost:5173' ? 'http://localhost:8080' : window.location.origin
+
+        window.open(host + "/oauth2/authorization/github", "_self")
+    }
+
+    function getUser() {
+        axios.get("/api/users/me")
+            .then(response => {
+                console.log(response.data)
+            })
+    }
+
     function fetchTodos() {
         axios.get("/api/todo")
             .then(response => {
@@ -50,6 +64,8 @@ function App() {
 
     return (
         <>
+            <button onClick={login}>Login</button>
+            <button onClick={getUser}>Me</button>
             <div className="page">
                 <h1>TODOs</h1>
                 {
@@ -62,7 +78,7 @@ function App() {
                             onTodoItemDelete={deleteTodo}
                             onTodoItemUpdate={updateTodo}
                             key={status}
-                         />
+                        />
                     })
                 }
             </div>
